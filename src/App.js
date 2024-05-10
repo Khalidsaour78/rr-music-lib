@@ -22,13 +22,22 @@ function App() {
     setSearchTerm(term)
   }
 
+  const renderGallery = () => {
+    if(data){
+        return (
+            <Suspense fallback={<h1>Loading...</h1>} >
+                <Gallery data={data} />
+            </Suspense>
+        )
+    }
+}
+
+
   return (
     <div className="App">
       <SearchBar handleSearch={handleSearch} />
       {message}
-      <Suspense fallback={<h1>Loading...</h1>}>
-      <Gallery data={data} />
-      </Suspense>
+      {renderGallery()}
     </div>
   );
 }
